@@ -1,7 +1,7 @@
 {
   "extends": ["react-app", "react-app/jest"],
   "rules": {
-    "singleQuote": true,
+    "singleQuote": 1,
     "endOfLine": "auto"
   }
 }

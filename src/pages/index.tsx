@@ -1,3 +1,4 @@
+import PrimaryButton from 'components/shared/Buttons/PrimaryButton';
 import Legend from 'components/Legend';
 import Title from 'components/shared/Title';
 import { Wrapper, Typography } from './index.styles';
@@ -22,6 +23,7 @@ function MainPage() {
         </Typography>
       </section>
       <Legend />
+      <PrimaryButton text="PLAY" />
     </Wrapper>
   );
 }

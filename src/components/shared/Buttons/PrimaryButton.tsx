@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { RoutePaths } from 'router';
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
@@ -21,12 +23,22 @@ export const StyledButton = styled.button`
   }
 `;
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 interface Props {
   text: string;
+  link: RoutePaths;
 }
-
-function PrimaryButton({ text }: Props) {
-  return <StyledButton>{text}</StyledButton>;
+// props destructuring allows us to pass there any html attr for button. For example now you can pass disabled attr
+function PrimaryButton({ text, link }: Props, props: any) {
+  return (
+    <StyledLink to={link}>
+      <StyledButton {...props}>{text}</StyledButton>
+    </StyledLink>
+  );
 }
 
 export default PrimaryButton;

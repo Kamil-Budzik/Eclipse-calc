@@ -57,8 +57,8 @@ function Legend() {
         <SemiTitle>Legend</SemiTitle>
       </header>
       <List>
-        {legendItems.map((item) => (
-          <LegendItem {...item} />
+        {legendItems.map((item, index) => (
+          <LegendItem {...item} key={index} />
         ))}
       </List>
     </section>

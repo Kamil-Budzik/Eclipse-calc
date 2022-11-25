@@ -1,3 +1,4 @@
+import RemoveButton from 'components/shared/Buttons/RemoveButton';
 import styled from 'styled-components';
 import { Ship } from './index';
 
@@ -19,6 +20,10 @@ export const Wrapper = styled.div`
   border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
+
+  .buttons-wrapper {
+    display: flex;
+  }
 `;
 
 export const ItemTitle = styled.h3`
@@ -55,6 +60,7 @@ export const StyledCategory = styled.div`
 
 interface Props extends Ship {
   handleItemClick: (id: string, v: string) => void;
+  handleShipRemove: (id: string) => void;
 }
 
 function AttackerListItem({
@@ -62,14 +68,17 @@ function AttackerListItem({
   shipName,
   categories,
   handleItemClick,
+  handleShipRemove,
 }: Props) {
   return (
     <StyledItem key={id}>
       <Wrapper>
         <ItemTitle>{shipName}</ItemTitle>
-        <div>
+        <div className="buttons-wrapper">
           <button>Presets</button>
-          <button>Remove</button>
+          <RemoveButton onClick={() => handleShipRemove(id)}>
+            Remove
+          </RemoveButton>
         </div>
       </Wrapper>
       <List>

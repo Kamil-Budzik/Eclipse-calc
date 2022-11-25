@@ -1,4 +1,4 @@
-// TODO delete this or the paid license maid dojechać nas
+// TODO delete this or the paid license will dojechać nas
 
 function RandomIcon() {
   return (

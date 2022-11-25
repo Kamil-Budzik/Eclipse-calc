@@ -74,6 +74,11 @@ function Attacker() {
     setShips(newShips);
   };
 
+  const handleShipRemove = (shipId: string) => {
+    const newShips = ships.filter((ship: Ship) => shipId !== ship.id);
+    setShips(newShips);
+  };
+
   return (
     <article>
       <header>
@@ -84,6 +89,7 @@ function Attacker() {
               {...ship}
               key={ship.id}
               handleItemClick={handleItemClick}
+              handleShipRemove={handleShipRemove}
             />
           ))}
         </ul>

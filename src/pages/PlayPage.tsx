@@ -1,4 +1,4 @@
-import Attacker from 'components/Attacker';
+import Attacker from 'components/Ships/Attackers';
 import PrimaryButton from 'components/shared/Buttons/PrimaryButton';
 import Title from 'components/shared/Title';
 import { RoutePaths } from 'router';

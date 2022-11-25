@@ -2,7 +2,7 @@ import { ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import uniqId from 'uniqid';
 import RandomIcon from 'assets/shipIcons/RandomIcon';
-import AttackerListItem from './AttackerListItem';
+import SigleShip from './SingleShip';
 
 export const SemiTitle = styled.h2`
   font-weight: 600;
@@ -79,17 +79,32 @@ function Attacker() {
     setShips(newShips);
   };
 
+  const handleShipReset = (shipId: string) => {
+    const newShips = ships.map((ship: Ship) => {
+      if (shipId === ship.id) {
+        const defaultCategories = ship.categories.map((category) => {
+          return { ...category, value: 0 };
+        });
+        return { ...ship, categories: defaultCategories };
+      }
+      return ship;
+    });
+
+    setShips(newShips);
+  };
+
   return (
     <article>
       <header>
         <SemiTitle>Attacker</SemiTitle>
         <ul>
           {ships.map((ship: Ship) => (
-            <AttackerListItem
+            <SigleShip
               {...ship}
               key={ship.id}
               handleItemClick={handleItemClick}
               handleShipRemove={handleShipRemove}
+              handleShipReset={handleShipReset}
             />
           ))}
         </ul>

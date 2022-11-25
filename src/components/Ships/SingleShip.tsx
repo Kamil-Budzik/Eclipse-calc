@@ -1,6 +1,7 @@
 import RemoveButton from 'components/shared/Buttons/RemoveButton';
+import ResetButton from 'components/shared/Buttons/ResetButton';
 import styled from 'styled-components';
-import { Ship } from './index';
+import { Ship } from './Attackers';
 
 export const SemiTitle = styled.h3`
   font-weight: 500;
@@ -61,6 +62,7 @@ export const StyledCategory = styled.div`
 interface Props extends Ship {
   handleItemClick: (id: string, v: string) => void;
   handleShipRemove: (id: string) => void;
+  handleShipReset: (id: string) => void;
 }
 
 function AttackerListItem({
@@ -69,13 +71,14 @@ function AttackerListItem({
   categories,
   handleItemClick,
   handleShipRemove,
+  handleShipReset,
 }: Props) {
   return (
     <StyledItem key={id}>
       <Wrapper>
         <ItemTitle>{shipName}</ItemTitle>
         <div className="buttons-wrapper">
-          <button>Presets</button>
+          <ResetButton onClick={() => handleShipReset(id)}>Presets</ResetButton>
           <RemoveButton onClick={() => handleShipRemove(id)}>
             Remove
           </RemoveButton>

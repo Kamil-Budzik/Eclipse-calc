@@ -1,14 +1,8 @@
 import { ReactElement, useState } from 'react';
-import styled from 'styled-components';
 import uniqId from 'uniqid';
 import RandomIcon from 'assets/shipIcons/RandomIcon';
-import SigleShip from './SingleShip';
-
-export const SemiTitle = styled.h2`
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 39px;
-`;
+import ShipListItem from './ShipsListItem';
+import { SemiTitle } from './styles';
 
 export interface ShipCategory {
   value: number;
@@ -19,14 +13,29 @@ export interface ShipCategory {
 export interface Ship {
   id: string;
   shipName: string;
+  type: 'attacker' | 'defender';
   categories: ShipCategory[];
 }
 
-function Attacker() {
+function Ships() {
   const [ships, setShips] = useState<Ship[]>([
     {
       id: uniqId(),
       shipName: 'zajebisty typ',
+      type: 'attacker',
+      categories: [
+        { name: 'cat1', value: 0, icon: <RandomIcon /> },
+        { name: 'cat2', value: 0, icon: <RandomIcon /> },
+        { name: 'cat3', value: 0, icon: <RandomIcon /> },
+        { name: 'cat4', value: 0, icon: <RandomIcon /> },
+        { name: 'cat5', value: 0, icon: <RandomIcon /> },
+        { name: 'cat6', value: 0, icon: <RandomIcon /> },
+      ],
+    },
+    {
+      id: uniqId(),
+      shipName: 'KOKS',
+      type: 'attacker',
       categories: [
         { name: 'cat1', value: 0, icon: <RandomIcon /> },
         { name: 'cat2', value: 0, icon: <RandomIcon /> },
@@ -39,6 +48,7 @@ function Attacker() {
     {
       id: uniqId(),
       shipName: 'zajebista typiara',
+      type: 'defender',
       categories: [
         { name: 'cat1', value: 0, icon: <RandomIcon /> },
         { name: 'cat2', value: 0, icon: <RandomIcon /> },
@@ -98,19 +108,35 @@ function Attacker() {
       <header>
         <SemiTitle>Attacker</SemiTitle>
         <ul>
-          {ships.map((ship: Ship) => (
-            <SigleShip
-              {...ship}
-              key={ship.id}
-              handleItemClick={handleItemClick}
-              handleShipRemove={handleShipRemove}
-              handleShipReset={handleShipReset}
-            />
-          ))}
+          {ships
+            .filter((ship) => ship.type === 'attacker')
+            .map((ship: Ship) => (
+              <ShipListItem
+                {...ship}
+                key={ship.id}
+                handleItemClick={handleItemClick}
+                handleShipRemove={handleShipRemove}
+                handleShipReset={handleShipReset}
+              />
+            ))}
+        </ul>
+        <SemiTitle>Defender</SemiTitle>
+        <ul>
+          {ships
+            .filter((ship) => ship.type === 'defender')
+            .map((ship: Ship) => (
+              <ShipListItem
+                {...ship}
+                key={ship.id}
+                handleItemClick={handleItemClick}
+                handleShipRemove={handleShipRemove}
+                handleShipReset={handleShipReset}
+              />
+            ))}
         </ul>
       </header>
     </article>
   );
 }
 
-export default Attacker;
+export default Ships;

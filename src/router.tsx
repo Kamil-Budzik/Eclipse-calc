@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import MainPage from 'pages/index';
+import MainPage from 'pages/MainPage';
 import PlayPage from 'pages/PlayPage';
 
 export enum RoutePaths {

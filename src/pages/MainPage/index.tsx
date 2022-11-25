@@ -2,7 +2,7 @@ import PrimaryButton from 'components/shared/Buttons/PrimaryButton';
 import Legend from 'components/Legend';
 import Title from 'components/shared/Title';
 import { RoutePaths } from 'router';
-import { Wrapper, Typography } from './index.styles';
+import { Wrapper, Typography } from './styles';
 
 function MainPage() {
   return (

@@ -1,21 +1,14 @@
-import Attacker from 'components/Ships/Attackers';
+import Ships from 'components/Ships';
 import PrimaryButton from 'components/shared/Buttons/PrimaryButton';
 import Title from 'components/shared/Title';
 import { RoutePaths } from 'router';
-import styled from 'styled-components';
-
-export const Wrapper = styled.main`
-  max-width: 1080px;
-  margin: 0 auto;
-`;
-
-export const Content = styled.section``;
+import { Wrapper } from './styles';
 
 function PlayPage() {
   return (
     <Wrapper>
       <Title title="GAME" />
-      <Attacker />
+      <Ships />
       <PrimaryButton link={RoutePaths.RESULTS} text="CALCULATE" />
     </Wrapper>
   );

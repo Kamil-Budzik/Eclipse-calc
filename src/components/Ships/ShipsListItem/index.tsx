@@ -1,8 +1,12 @@
+import { useDispatch } from 'react-redux';
 import RemoveButton from 'components/shared/Buttons/RemoveButton';
 import ResetButton from 'components/shared/Buttons/ResetButton';
-import { useDispatch } from 'react-redux';
-import { incrementCategory, Ship, removeShip } from 'store/shipsSlice';
-
+import {
+  incrementCategory,
+  Ship,
+  removeShip,
+  resetShip,
+} from 'store/shipsSlice';
 import {
   StyledItem,
   Wrapper,
@@ -12,28 +16,19 @@ import {
   StyledCategory,
 } from './styles';
 
-interface Props extends Ship {
-  handleItemClick: (id: string, v: string) => void;
-  handleShipRemove: (id: string) => void;
-  handleShipReset: (id: string) => void;
-}
-
-function AttackerListItem({
-  id,
-  shipName,
-  categories,
-  handleItemClick,
-  handleShipRemove,
-  handleShipReset,
-}: Props) {
+function AttackerListItem({ id, shipName, categories }: Ship) {
   const dispatch = useDispatch();
 
   const handleIncrementCategory = (shipId: string, categoryName: string) => {
-    dispatch(incrementCategory({ categoryName, shipId }));
+    dispatch(incrementCategory({ shipId, categoryName }));
   };
 
   const handleRemoveShip = (shipId: string) => {
     dispatch(removeShip(shipId));
+  };
+
+  const handleResetShip = (shipId: string) => {
+    dispatch(resetShip(shipId));
   };
 
   return (
@@ -41,7 +36,7 @@ function AttackerListItem({
       <Wrapper>
         <ItemTitle>{shipName}</ItemTitle>
         <div className="buttons-wrapper">
-          <ResetButton onClick={() => handleShipReset(id)}>Presets</ResetButton>
+          <ResetButton onClick={() => handleResetShip(id)}>Presets</ResetButton>
           <RemoveButton onClick={() => handleRemoveShip(id)}>
             Remove
           </RemoveButton>

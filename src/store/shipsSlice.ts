@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
 import shipsState from './shipsState';
 
@@ -64,17 +63,22 @@ export const shipsSlice = createSlice({
       );
       state.ships = newShips;
     },
-    // increment: (state) => {
-    //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    //   // doesn't actually mutate the state because it uses the Immer library,
-    //   // which detects changes to a "draft state" and produces a brand new
-    //   // immutable state based off those changes
-    //   state.value += 1;
-    // },
+    resetShip: (state, action: PayloadAction<string>) => {
+      const newShips = state.ships.map((ship: Ship) => {
+        if (action.payload === ship.id) {
+          const defaultCategories = ship.categories.map((category) => {
+            return { ...category, value: 0 };
+          });
+          return { ...ship, categories: defaultCategories };
+        }
+        return ship;
+      });
+      state.ships = newShips;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementCategory, removeShip } = shipsSlice.actions;
+export const { incrementCategory, removeShip, resetShip } = shipsSlice.actions;
 
 export default shipsSlice.reducer;

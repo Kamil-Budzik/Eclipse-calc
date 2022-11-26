@@ -1,6 +1,7 @@
 import RemoveButton from 'components/shared/Buttons/RemoveButton';
 import ResetButton from 'components/shared/Buttons/ResetButton';
-import { Ship } from 'store/shipsSlice';
+import { useDispatch } from 'react-redux';
+import { incrementCategory, Ship } from 'store/shipsSlice';
 
 import {
   StyledItem,
@@ -25,6 +26,12 @@ function AttackerListItem({
   handleShipRemove,
   handleShipReset,
 }: Props) {
+  const dispatch = useDispatch();
+
+  const handleIncrementCategory = (shipId: string, categoryName: string) => {
+    dispatch(incrementCategory({ categoryName, shipId }));
+  };
+
   return (
     <StyledItem key={id}>
       <Wrapper>
@@ -40,7 +47,7 @@ function AttackerListItem({
         {categories.map((category, index) => (
           <StyledLi
             key={index}
-            onClick={() => handleItemClick(id, category.name)}
+            onClick={() => handleIncrementCategory(id, category.name)}
           >
             <StyledCategory>
               {category.icon}

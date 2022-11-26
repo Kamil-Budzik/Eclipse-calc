@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { Ship } from 'store/shipsSlice';
 import ShipListItem from './ShipsListItem';

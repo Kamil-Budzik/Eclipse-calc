@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import type { PayloadAction } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
 import shipsState from './shipsState';
@@ -20,10 +20,44 @@ export interface ShipsState {
   ships: Ship[];
 }
 
+interface IncrementCategoryPayload {
+  shipId: string;
+  categoryName: string;
+}
+
 export const shipsSlice = createSlice({
   name: 'ships',
   initialState: shipsState,
   reducers: {
+    incrementCategory: (
+      state,
+      action: PayloadAction<IncrementCategoryPayload>
+    ) => {
+      if (!state.ships.length) return;
+
+      let currentShip = state.ships.filter(
+        (ship) => ship.id === action.payload.shipId
+      )[0];
+
+      const newCategories = currentShip.categories.map((category) => {
+        if (category.name === action.payload.categoryName) {
+          return { ...category, value: category.value + 1 };
+        }
+        return category;
+      });
+
+      const newShips = state.ships.map((ship: Ship) => {
+        if (ship.id === action.payload.shipId) {
+          return {
+            ...ship,
+            categories: newCategories,
+          };
+        }
+        return ship;
+      });
+
+      state.ships = newShips;
+    },
     // increment: (state) => {
     //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
     //   // doesn't actually mutate the state because it uses the Immer library,
@@ -35,6 +69,6 @@ export const shipsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-// export const { increment, decrement, incrementByAmount } = shipsSlice.actions;
+export const { incrementCategory } = shipsSlice.actions;
 
 export default shipsSlice.reducer;

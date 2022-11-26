@@ -1,7 +1,7 @@
 import RemoveButton from 'components/shared/Buttons/RemoveButton';
 import ResetButton from 'components/shared/Buttons/ResetButton';
 import { useDispatch } from 'react-redux';
-import { incrementCategory, Ship } from 'store/shipsSlice';
+import { incrementCategory, Ship, removeShip } from 'store/shipsSlice';
 
 import {
   StyledItem,
@@ -32,13 +32,17 @@ function AttackerListItem({
     dispatch(incrementCategory({ categoryName, shipId }));
   };
 
+  const handleRemoveShip = (shipId: string) => {
+    dispatch(removeShip(shipId));
+  };
+
   return (
     <StyledItem key={id}>
       <Wrapper>
         <ItemTitle>{shipName}</ItemTitle>
         <div className="buttons-wrapper">
           <ResetButton onClick={() => handleShipReset(id)}>Presets</ResetButton>
-          <RemoveButton onClick={() => handleShipRemove(id)}>
+          <RemoveButton onClick={() => handleRemoveShip(id)}>
             Remove
           </RemoveButton>
         </div>

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { Ship } from 'store/shipsSlice';
 import ShipListItem from './ShipsListItem';
@@ -6,26 +6,7 @@ import { SemiTitle } from './styles';
 
 function Ships() {
   const ships = useSelector((state: RootState) => state.ships.ships);
-  const handleItemClick = (shipId: string, categoryName: string) => {
-    // if (!ships.length) return;
-    // let currentShip = ships.filter((ship: Ship) => ship.id === shipId)[0];
-    // const newCategories = currentShip.categories.map((category) => {
-    //   if (category.name === categoryName) {
-    //     return { ...category, value: category.value + 1 };
-    //   }
-    //   return category;
-    // });
-    // const newShips = ships.map((ship: Ship) => {
-    //   if (ship.id === shipId) {
-    //     return {
-    //       ...ship,
-    //       categories: newCategories,
-    //     };
-    //   }
-    //   return ship;
-    // });
-    // setShips(newShips);
-  };
+  const handleItemClick = (shipId: string, categoryName: string) => {};
 
   const handleShipRemove = (shipId: string) => {
     // const newShips = ships.filter((ship: Ship) => shipId !== ship.id);

@@ -58,6 +58,12 @@ export const shipsSlice = createSlice({
 
       state.ships = newShips;
     },
+    removeShip: (state, action: PayloadAction<string>) => {
+      const newShips = state.ships.filter(
+        (ship: Ship) => action.payload !== ship.id
+      );
+      state.ships = newShips;
+    },
     // increment: (state) => {
     //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
     //   // doesn't actually mutate the state because it uses the Immer library,
@@ -69,6 +75,6 @@ export const shipsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementCategory } = shipsSlice.actions;
+export const { incrementCategory, removeShip } = shipsSlice.actions;
 
 export default shipsSlice.reducer;

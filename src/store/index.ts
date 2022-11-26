@@ -1,9 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
+import modalSlice from './modalSlice';
 import shipsSlice from './shipsSlice';
 
 export const store = configureStore({
   reducer: {
     ships: shipsSlice,
+    modal: modalSlice,
+  },
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: false,
+    });
   },
 });
 

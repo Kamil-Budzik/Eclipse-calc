@@ -15,6 +15,7 @@ import {
   StyledLi,
   StyledCategory,
 } from './styles';
+import { openModal } from 'store/modalSlice';
 
 function AttackerListItem({ id, shipName, categories }: Ship) {
   const dispatch = useDispatch();
@@ -34,7 +35,10 @@ function AttackerListItem({ id, shipName, categories }: Ship) {
   return (
     <StyledItem key={id}>
       <Wrapper>
-        <ItemTitle>{shipName}</ItemTitle>
+        <div className="buttons-wrapper">
+          <ItemTitle>{shipName}</ItemTitle>
+          <button onClick={() => dispatch(openModal())}>Add ship</button>
+        </div>
         <div className="buttons-wrapper">
           <ResetButton onClick={() => handleResetShip(id)}>Presets</ResetButton>
           <RemoveButton onClick={() => handleRemoveShip(id)}>

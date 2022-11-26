@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReactElement } from 'react';
-import shipsState from './shipsState';
+import shipsState, { defaultCategories } from './shipsState';
+import uniqid from 'uniqid';
 
 export interface ShipCategory {
   value: number;
@@ -35,6 +36,12 @@ export const shipsSlice = createSlice({
   reducers: {
     addShip: (state, action: PayloadAction<AddShipPayload>) => {
       console.log('Na razie ciężko to zaimplementować', action.payload);
+      state.ships.push({
+        id: uniqid(),
+        shipName: action.payload.shipName,
+        type: 'attacker',
+        categories: defaultCategories,
+      });
       // Zmień sobie typy na takie jakie będą ostatecznie i będzie z górki;
     },
     incrementCategory: (

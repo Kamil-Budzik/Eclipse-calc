@@ -24,10 +24,19 @@ interface IncrementCategoryPayload {
   categoryName: string;
 }
 
+interface AddShipPayload {
+  shipName: string;
+  // dodaj co tam potrzebujesz mieć
+}
+
 export const shipsSlice = createSlice({
   name: 'ships',
   initialState: shipsState,
   reducers: {
+    addShip: (state, action: PayloadAction<AddShipPayload>) => {
+      console.log('Na razie ciężko to zaimplementować', action.payload);
+      // Zmień sobie typy na takie jakie będą ostatecznie i będzie z górki;
+    },
     incrementCategory: (
       state,
       action: PayloadAction<IncrementCategoryPayload>
@@ -79,6 +88,7 @@ export const shipsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { incrementCategory, removeShip, resetShip } = shipsSlice.actions;
+export const { incrementCategory, removeShip, resetShip, addShip } =
+  shipsSlice.actions;
 
 export default shipsSlice.reducer;

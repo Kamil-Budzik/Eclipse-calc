@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import MainPage from 'pages/MainPage';
 import PlayPage from 'pages/PlayPage';
+import Result from 'pages/Result';
 
 export enum RoutePaths {
   DEFAULT = '/',
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: RoutePaths.RESULTS,
-    element: <h1>RESULTS PAGE</h1>,
+    element: <Result />,
   },
 ]);
 

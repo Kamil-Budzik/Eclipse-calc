@@ -1,6 +1,6 @@
 import RemoveButton from 'components/shared/Buttons/RemoveButton';
 import ResetButton from 'components/shared/Buttons/ResetButton';
-import { Ship } from '..';
+import { Ship } from 'store/shipsSlice';
 
 import {
   StyledItem,

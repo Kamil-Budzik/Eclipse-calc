@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ModalState {
+  isOpened: boolean;
+  //  shipType: 'attacker' | 'defender'. Patch na todo w ShipModal/index.tsx
+}
+
+const initialState: ModalState = {
   isOpened: false,
+  // shipType: null
 };
 
 export const modalSlice = createSlice({

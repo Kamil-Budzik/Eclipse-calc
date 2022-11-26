@@ -7,10 +7,15 @@ interface Props {
   closeModal: () => void;
 }
 
+// TODO: jeżeli atakujący i defujący mają różne statki to zrób dwa osobne modale do tego i przekazuj odpowiednią wartość do addShip({type: 'attacker' | 'defender'}). Jeżeli natomiast mają takie same to dodałbym wartość w modalSlice, poza wartością isOpened, dodaj shipeType: 'attacker' | 'defender' i modyfikuj ją w zależności czy user wciśnie buttona addship przy atakującym czy broniącym
+
 const ShipModal = ({ isModal, closeModal }: Props) => {
   const dispatch = useDispatch();
 
-  const handleAddShip = (shipName: string) => dispatch(addShip({ shipName }));
+  const handleAddShip = (shipName: string) => {
+    dispatch(addShip({ shipName }));
+    closeModal();
+  };
 
   return (
     <div>
